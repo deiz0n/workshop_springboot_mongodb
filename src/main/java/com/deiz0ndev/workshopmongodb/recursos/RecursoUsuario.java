@@ -6,6 +6,7 @@ import com.deiz0ndev.workshopmongodb.servicos.ServicoUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,6 +25,14 @@ public class RecursoUsuario {
         List<Usuario> lista = servico.buscarTodos();
         List<DTOUsuario> listaDTO = lista.stream().map(x -> new DTOUsuario(x)).collect(Collectors.toList());
         return ResponseEntity.ok().body(listaDTO);
+    }
+
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<DTOUsuario> buscarPorId(@PathVariable String id) {
+        Usuario usuario = servico.buscarPorId(id);
+
+
+        return ResponseEntity.ok().body(new DTOUsuario(usuario));
     }
 
 }
