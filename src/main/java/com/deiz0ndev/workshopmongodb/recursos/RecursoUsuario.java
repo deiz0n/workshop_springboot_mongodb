@@ -1,6 +1,7 @@
 package com.deiz0ndev.workshopmongodb.recursos;
 
 import com.deiz0ndev.workshopmongodb.dominio.Usuario;
+import com.deiz0ndev.workshopmongodb.dto.DTOUsuario;
 import com.deiz0ndev.workshopmongodb.servicos.ServicoUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/usuarios")
@@ -18,9 +20,10 @@ public class RecursoUsuario {
     private ServicoUsuario servico;
 
     @GetMapping
-    public ResponseEntity<List<Usuario>> buscarTodos() {
+    public ResponseEntity<List<DTOUsuario>> buscarTodos() {
         List<Usuario> lista = servico.buscarTodos();
-        return ResponseEntity.ok().body(lista);
+        List<DTOUsuario> listaDTO = lista.stream().map(x -> new DTOUsuario(x)).collect(Collectors.toList());
+        return ResponseEntity.ok().body(listaDTO);
     }
 
 }
