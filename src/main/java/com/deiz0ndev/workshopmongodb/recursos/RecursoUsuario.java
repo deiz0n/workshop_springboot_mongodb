@@ -40,4 +40,10 @@ public class RecursoUsuario {
         return ResponseEntity.created(uri).build();
     }
 
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable String id) {
+        servico.deletar(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }
