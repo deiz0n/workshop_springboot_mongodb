@@ -21,7 +21,7 @@ public class ServicoPublicacao {
     }
 
     public List<Publicacao> buscarPorTitulo(String texto) {
-        return repositorioPublicacao.findByTituloContainingIgnoreCase(texto);
+        return repositorioPublicacao.findByTitulo(texto);
     }
 
 }
