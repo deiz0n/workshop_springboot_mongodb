@@ -3,6 +3,7 @@ package com.deiz0ndev.workshopmongodb.config;
 import com.deiz0ndev.workshopmongodb.dominio.Publicacao;
 import com.deiz0ndev.workshopmongodb.dominio.Usuario;
 import com.deiz0ndev.workshopmongodb.dto.DTOAutor;
+import com.deiz0ndev.workshopmongodb.dto.DTOComentarios;
 import com.deiz0ndev.workshopmongodb.repositorio.RepositorioPublicacao;
 import com.deiz0ndev.workshopmongodb.repositorio.RepositorioUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,13 @@ public class Instaciacao implements CommandLineRunner {
 
         Publicacao post1 = new Publicacao(null, sdf.parse("21/03/2018"), "Patiu viagem", "Vou para SP", new DTOAutor(user1));
         Publicacao post2 = new Publicacao(null, sdf.parse("23/03/2018"), "Bom dia", "Acordei muito feliz!", new DTOAutor(user1));
+
+        DTOComentarios c1 = new DTOComentarios("Boa viagem cara!", sdf.parse("21/03/2018"), new DTOAutor(user2));
+        DTOComentarios c2 = new DTOComentarios("Aproveite", sdf.parse("22/03/2018"), new DTOAutor(user3));
+        DTOComentarios c3 = new DTOComentarios("Tenha um ótino dia", sdf.parse("23/03/2018"), new DTOAutor(user2));
+
+        post1.getComentarios().addAll(Arrays.asList(c1, c2));
+        post2.getComentarios().add(c3);
 
         repositorioPublicacao.saveAll(Arrays.asList(post1, post2));
 

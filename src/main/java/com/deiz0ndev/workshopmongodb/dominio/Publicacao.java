@@ -1,16 +1,19 @@
 package com.deiz0ndev.workshopmongodb.dominio;
 
 import com.deiz0ndev.workshopmongodb.dto.DTOAutor;
+import com.deiz0ndev.workshopmongodb.dto.DTOComentarios;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Document
 public class Publicacao implements Serializable {
-    private static final long seriLVersionUID = 1L;
+    private static final long seriaLVersionUID = 1L;
 
     @Id
     private String id;
@@ -18,6 +21,8 @@ public class Publicacao implements Serializable {
     private String titulo;
     private String corpo;
     private DTOAutor autor;
+
+    private List<DTOComentarios> comentarios = new ArrayList<>();
 
     public Publicacao() {
 
@@ -69,6 +74,10 @@ public class Publicacao implements Serializable {
 
     public void setAutor(DTOAutor autor) {
         this.autor = autor;
+    }
+
+    public List<DTOComentarios> getComentarios() {
+        return comentarios;
     }
 
     @Override
