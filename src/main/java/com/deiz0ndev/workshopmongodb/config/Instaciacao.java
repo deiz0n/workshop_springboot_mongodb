@@ -41,5 +41,9 @@ public class Instaciacao implements CommandLineRunner {
 
         repositorioPublicacao.saveAll(Arrays.asList(post1, post2));
 
+        user1.getPosts().addAll(Arrays.asList(post1, post2));
+
+        repositorioUsuario.save(user1);
+
     }
 }
