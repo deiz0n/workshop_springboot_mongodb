@@ -37,7 +37,7 @@ public class Instaciacao implements CommandLineRunner {
 
         repositorioUsuario.saveAll(Arrays.asList(user1, user2, user3));
 
-        Publicacao post1 = new Publicacao(null, sdf.parse("21/03/2018"), "Patiu viagem", "Vou para SP", new DTOAutor(user1));
+        Publicacao post1 = new Publicacao(null, sdf.parse("21/03/2018"), "Partiu viagem", "Vou para SP", new DTOAutor(user1));
         Publicacao post2 = new Publicacao(null, sdf.parse("23/03/2018"), "Bom dia", "Acordei muito feliz!", new DTOAutor(user1));
 
         DTOComentarios c1 = new DTOComentarios("Boa viagem cara!", sdf.parse("21/03/2018"), new DTOAutor(user2));
