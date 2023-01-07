@@ -1,5 +1,6 @@
 package com.deiz0ndev.workshopmongodb.recursos;
 
+import com.deiz0ndev.workshopmongodb.dominio.Publicacao;
 import com.deiz0ndev.workshopmongodb.dominio.Usuario;
 import com.deiz0ndev.workshopmongodb.dto.DTOUsuario;
 import com.deiz0ndev.workshopmongodb.servicos.ServicoUsuario;
@@ -53,4 +54,11 @@ public class RecursoUsuario {
         usuario = servico.atualizar(usuario);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping(value = "/{id}/publicacoes")
+    public ResponseEntity<List<Publicacao>> buscarPublicacoes(@PathVariable String id) {
+        Usuario usuario = servico.buscarPorId(id);
+        return ResponseEntity.ok().body(usuario.getPosts());
+    }
+
 }
